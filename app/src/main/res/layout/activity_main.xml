@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="302dp"
+        android:layout_height="93dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/yt_logo_rgb_light"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="116dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"/>
+
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="302dp"
+        android:layout_height="93dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/download_instagram_logo_png_5"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="116dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"/>
+</LinearLayout>
