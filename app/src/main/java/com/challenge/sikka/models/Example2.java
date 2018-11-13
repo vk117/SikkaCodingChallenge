@@ -130,22 +130,6 @@ class From {
 
 
 
-class Likes {
-
-    @SerializedName("count")
-    @Expose
-    private Integer count;
-
-    public Integer getCount() {
-        return count;
-    }
-
-    public void setCount(Integer count) {
-        this.count = count;
-    }
-
-}
-
 class LowBandwidth {
 
     @SerializedName("width")

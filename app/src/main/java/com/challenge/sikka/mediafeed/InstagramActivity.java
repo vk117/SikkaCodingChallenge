@@ -12,6 +12,9 @@ import com.challenge.sikka.models.Example2;
 import com.challenge.sikka.models.Images;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import retrofit2.Call;
@@ -38,7 +41,14 @@ public class InstagramActivity extends AppCompatActivity {
                     List<Datum> images = new ArrayList<Datum>();
 
                     for(int i = 0; i < response.body().getData().size(); i++){
-                        images.add(response.body().getData().get(i));
+                        images.add(response.body().getData().get(i));}
+
+                    Collections.sort(images, new Comparator<Datum>() {
+                        @Override
+                        public int compare(Datum o1, Datum o2) {
+                            return o2.getLikes().getCount().compareTo(o1.getLikes().getCount());
+                        }
+                    });
 
                        pictures = (RecyclerView) findViewById(R.id.grid);
                        pictures.setLayoutManager(new GridLayoutManager(getApplicationContext(), 3));
@@ -48,7 +58,7 @@ public class InstagramActivity extends AppCompatActivity {
                        pictures.setAdapter(adapter);
 
 
-                    }
+
                 }
                 else {
                     System.out.println(response.errorBody());
