@@ -1,11 +1,15 @@
 package com.challenge.sikka.mediafeed;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import com.challenge.sikka.models.Datum;
 import com.challenge.sikka.models.Images;
 
 import java.util.List;
@@ -13,11 +17,11 @@ import java.util.List;
 public class InstagramAdapter extends RecyclerView.Adapter<InstagramAdapter.ViewHolder> {
 
     private Context context;
-    private List<Images> pics;
+    private List<Datum> data;
 
-    public InstagramAdapter(Context context, List<Images> imges){
+    public InstagramAdapter(Context context, List<Datum> imges){
         this.context = context;
-        pics = imges;
+        data = imges;
     }
 
     @Override
@@ -28,13 +32,21 @@ public class InstagramAdapter extends RecyclerView.Adapter<InstagramAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position){
-        new DownloadImageTask(((ViewHolder) holder).img).execute(pics.get(position).getStandardResolution().getUrl());
+    public void onBindViewHolder(ViewHolder holder, final int position){
+        new DownloadImageTask(((ViewHolder) holder).img).execute(data.get(position).getImages().getStandardResolution().getUrl());
+        holder.img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(data.get(position).getLink()));
+                intent.setPackage("com.instagram.android");
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
     public int getItemCount(){
-        return pics.size();
+        return data.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

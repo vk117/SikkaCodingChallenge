@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.challenge.sikka.api.InstagramApi;
 import com.challenge.sikka.api.InstagramClient;
+import com.challenge.sikka.models.Datum;
 import com.challenge.sikka.models.Example2;
 import com.challenge.sikka.models.Images;
 
@@ -34,10 +35,10 @@ public class InstagramActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Example2> call, Response<Example2> response) {
                 if(response.isSuccessful()){
-                    List<Images> images = new ArrayList<Images>();
+                    List<Datum> images = new ArrayList<Datum>();
 
                     for(int i = 0; i < response.body().getData().size(); i++){
-                        images.add(response.body().getData().get(i).getImages());
+                        images.add(response.body().getData().get(i));
 
                        pictures = (RecyclerView) findViewById(R.id.grid);
                        pictures.setLayoutManager(new GridLayoutManager(getApplicationContext(), 3));
@@ -45,6 +46,8 @@ public class InstagramActivity extends AppCompatActivity {
 
                        adapter = new InstagramAdapter(InstagramActivity.this, images);
                        pictures.setAdapter(adapter);
+
+
                     }
                 }
                 else {

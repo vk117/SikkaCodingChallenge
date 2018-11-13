@@ -17,7 +17,8 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="116dp"
         android:layout_gravity="center"
-        android:layout_marginTop="100dp"/>
+        android:layout_marginTop="100dp"
+        android:background="@android:color/transparent"/>
 
 
     <ImageButton
@@ -29,5 +30,6 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="116dp"
         android:layout_gravity="center"
-        android:layout_marginTop="100dp"/>
+        android:layout_marginTop="100dp"
+        android:background="@android:color/transparent"/>
 </LinearLayout>

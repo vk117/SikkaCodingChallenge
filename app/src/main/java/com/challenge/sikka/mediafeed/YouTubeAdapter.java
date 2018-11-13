@@ -1,8 +1,10 @@
 package com.challenge.sikka.mediafeed;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -41,7 +43,7 @@ public class YouTubeAdapter extends ArrayAdapter<Snippet> {
         if(listItem == null)
             listItem = LayoutInflater.from(context).inflate(R.layout.activity_listview, parent, false);
 
-        Snippet currentSnippet = videoList.get(position);
+        final Snippet currentSnippet = videoList.get(position);
         new DownloadImageTask((ImageView)listItem.findViewById(R.id.thumbnail)).execute(currentSnippet.getThumbnails().getDefault().getUrl());
 
         TextView title = (TextView) listItem.findViewById(R.id.title);
@@ -49,6 +51,16 @@ public class YouTubeAdapter extends ArrayAdapter<Snippet> {
 
         TextView description = (TextView) listItem.findViewById(R.id.description);
         description.setText(currentSnippet.getDescription());
+
+        listItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =  new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=" + currentSnippet.getResourceId().getVideoId()));
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setPackage("com.google.android.youtube");
+                context.startActivity(intent);
+            }
+        });
 
 
         return listItem;
